@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\dll">
+      <UniqueIdentifier>{a5f4e360-04b9-4e6d-b7e8-4cf5e54e477f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\dll">
+      <UniqueIdentifier>{85a0b38c-cacb-4266-abe5-3dd73f35f25a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\factories">
+      <UniqueIdentifier>{aa0d592f-74ee-48ca-bbe7-aba89b18930d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\operations">
+      <UniqueIdentifier>{4b72d995-0e94-4632-acaf-23744f607dfb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\util">
+      <UniqueIdentifier>{75f5508b-8cbc-45f8-961e-167ba37edb1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\file">
+      <UniqueIdentifier>{9aca8997-03cb-49a3-8695-2cc56c6c6f5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\file">
+      <UniqueIdentifier>{b9bb77a7-322e-405e-a213-883d61f9f2d2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h">
+      <Filter>Header Files\dll</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files\dll</Filter>
+    </ClInclude>
+    <ClInclude Include="dllexport.h">
+      <Filter>Header Files\dll</Filter>
+    </ClInclude>
+    <ClInclude Include="operation_factory.h">
+      <Filter>Header Files\factories</Filter>
+    </ClInclude>
+    <ClInclude Include="string_util.h">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="abstract_operation.h">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="file_system.h">
+      <Filter>Header Files\file</Filter>
+    </ClInclude>
+    <ClInclude Include="date_util.h">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="stream_util.h">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="file_system_entry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pch.cpp">
+      <Filter>Source Files\dll</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>Source Files\dll</Filter>
+    </ClCompile>
+    <ClCompile Include="file_system.cpp">
+      <Filter>Source Files\file</Filter>
+    </ClCompile>
+    <ClCompile Include="file_system_entry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
+  </ItemGroup>
+</Project>

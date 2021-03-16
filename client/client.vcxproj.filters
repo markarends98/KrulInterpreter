@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\operations">
+      <UniqueIdentifier>{bdcd6df2-1c8f-43e7-8072-7da0dd876c4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\file">
+      <UniqueIdentifier>{2ae389ce-4a50-4846-9bf7-dedee1ab20ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\file">
+      <UniqueIdentifier>{eda14860-876c-43ed-9d4a-4096ebd75312}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\operations">
+      <UniqueIdentifier>{79994098-03c5-4742-9bf6-8e991bbb52ec}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="client_file_system.cpp">
+      <Filter>Source Files\file</Filter>
+    </ClCompile>
+    <ClCompile Include="client.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="c_info.cpp">
+      <Filter>Source Files\operations</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="client_file_system.h">
+      <Filter>Header Files\file</Filter>
+    </ClInclude>
+    <ClInclude Include="c_info.h">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
