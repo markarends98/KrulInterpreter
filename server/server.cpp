@@ -15,6 +15,9 @@
 #include "string_util.h"
 #include "operation_factory.h"
 #include "s_info.h"
+#include "s_mkdir.h"
+#include "s_dir.h"
+#include "s_ren.h"
 
 int main() {
 	try {
@@ -26,6 +29,9 @@ int main() {
 
 		factory::OperationFactory operation_factory;
 		operation_factory.registerOperation<operation::InfoOperationCreator>();
+		operation_factory.registerOperation<operation::MkDirOperationCreator>();
+		operation_factory.registerOperation<operation::DirOperationCreator>();
+		operation_factory.registerOperation<operation::RenOperationCreator>();
 		
 		do {
 			std::cout << "waiting for client to connect" << stringUtil::lf;
@@ -41,7 +47,7 @@ int main() {
 					client << "" << stringUtil::crlf;
 				}
 				else {
-					std::cout << prompt << request << stringUtil::lf;
+					std::cout << prompt << request;
 
 					if (request == "quit") {
 						client << "Bye." << stringUtil::crlf;
@@ -49,15 +55,12 @@ int main() {
 						break;
 					}
 
-
 					std::unique_ptr<operation::AbstractOperation> operation = operation_factory.get(request);
 
 					if (operation != nullptr)
 					{
-						// remove command from string to get command options
 						operation->readStream(client);
 						operation->execute(client);
-						operation->clean();
 					}
 					else
 					{

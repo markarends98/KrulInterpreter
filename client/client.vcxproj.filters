@@ -36,12 +36,30 @@
     <ClCompile Include="c_info.cpp">
       <Filter>Source Files\operations</Filter>
     </ClCompile>
+    <ClCompile Include="c_mkdir.cpp">
+      <Filter>Source Files\operations</Filter>
+    </ClCompile>
+    <ClCompile Include="c_dir.cpp">
+      <Filter>Source Files\operations</Filter>
+    </ClCompile>
+    <ClCompile Include="c_ren.cpp">
+      <Filter>Source Files\operations</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="client_file_system.h">
       <Filter>Header Files\file</Filter>
     </ClInclude>
     <ClInclude Include="c_info.h">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="c_mkdir.h">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="c_dir.h">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="c_ren.h">
       <Filter>Header Files\operations</Filter>
     </ClInclude>
   </ItemGroup>

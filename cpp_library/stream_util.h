@@ -26,7 +26,8 @@ namespace streamUtil
 		if(std::getline(stream, output))
 		{
 			stringUtil::eraseCr(output);
-			return true;
+			stringUtil::trim(output);
+			return !output.empty();
 		}
 		return false;
 	}

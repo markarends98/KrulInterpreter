@@ -345,11 +345,19 @@ namespace fileSystem
 	{
 		const std::string full_path = this->fullPath(path);
 		FileSystemEntry entry = FileSystemEntry::findEntry(full_path);
-		
-		if (entry.exists() && (type != entry_type::unspecified && entry.type() == type))
+
+		if (entry.exists())
 		{
-			error = file_system_error::none;
-			return entry;
+			if (type == entry_type::unspecified)
+			{
+				error = file_system_error::none;
+				return entry;
+			}
+			if (type != entry_type::unspecified && entry.type() == type)
+			{
+				error = file_system_error::none;
+				return entry;
+			}
 		}
 		error = file_system_error::not_found;
 		return FileSystemEntry{};

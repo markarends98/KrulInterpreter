@@ -18,10 +18,12 @@ namespace operation
         AbstractOperation& operator=(const AbstractOperation&) = default;
         AbstractOperation& operator=(AbstractOperation&&) = default;
     public:
-        virtual void readStream(asio::ip::tcp::iostream& stream) {};
+        virtual void readStream(asio::ip::tcp::iostream& stream) {}
         virtual void execute(asio::ip::tcp::iostream& stream) = 0;
         virtual std::string getCommand() = 0;
-        virtual void clean() {}
+        virtual void init() {}
+    protected:
+        std::string prompt(const std::string message = "") { return this->getCommand() + "> " + message; }
     };
 
     CPP_LIBRARY_API class AbstractOperationCreator
