@@ -164,6 +164,7 @@
     <ClCompile Include="s_dir.cpp" />
     <ClCompile Include="s_info.cpp" />
     <ClCompile Include="s_mkdir.cpp" />
+    <ClCompile Include="s_quit.cpp" />
     <ClCompile Include="s_ren.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -176,6 +177,7 @@
     <ClInclude Include="s_dir.h" />
     <ClInclude Include="s_info.h" />
     <ClInclude Include="s_mkdir.h" />
+    <ClInclude Include="s_quit.h" />
     <ClInclude Include="s_ren.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

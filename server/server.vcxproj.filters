@@ -45,6 +45,9 @@
     <ClCompile Include="s_ren.cpp">
       <Filter>Source Files\operations</Filter>
     </ClCompile>
+    <ClCompile Include="s_quit.cpp">
+      <Filter>Source Files\operations</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="server_file_system.h">
@@ -60,6 +63,9 @@
       <Filter>Header Files\operations</Filter>
     </ClInclude>
     <ClInclude Include="s_ren.h">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="s_quit.h">
       <Filter>Header Files\operations</Filter>
     </ClInclude>
   </ItemGroup>

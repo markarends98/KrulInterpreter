@@ -18,6 +18,7 @@
 #include "s_mkdir.h"
 #include "s_dir.h"
 #include "s_ren.h"
+#include "s_quit.h"
 
 int main() {
 	try {
@@ -32,6 +33,7 @@ int main() {
 		operation_factory.registerOperation<operation::MkDirOperationCreator>();
 		operation_factory.registerOperation<operation::DirOperationCreator>();
 		operation_factory.registerOperation<operation::RenOperationCreator>();
+		operation_factory.registerOperation<operation::QuitOperationCreator>();
 		
 		do {
 			std::cout << "waiting for client to connect" << stringUtil::lf;
@@ -49,14 +51,8 @@ int main() {
 				else {
 					std::cout << prompt << request;
 
-					if (request == "quit") {
-						client << "Bye." << stringUtil::crlf;
-						std::cerr << "will disconnect from client " << client.socket().local_endpoint() << "." << stringUtil::lf;
-						break;
-					}
-
 					std::unique_ptr<operation::AbstractOperation> operation = operation_factory.get(request);
-
+					
 					if (operation != nullptr)
 					{
 						operation->readStream(client);

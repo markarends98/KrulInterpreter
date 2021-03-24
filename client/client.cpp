@@ -19,6 +19,7 @@
 #include "c_mkdir.h"
 #include "c_dir.h"
 #include "c_ren.h"
+#include "c_quit.h"
 
 int main() {
 	try {
@@ -35,6 +36,7 @@ int main() {
 		operation_factory.registerOperation<operation::MkDirOperationCreator>();
 		operation_factory.registerOperation<operation::DirOperationCreator>();
 		operation_factory.registerOperation<operation::RenOperationCreator>();
+		operation_factory.registerOperation<operation::QuitOperationCreator>();
 
 		std::unique_ptr<operation::AbstractOperation> operation;
 		
@@ -49,12 +51,12 @@ int main() {
 				if (streamUtil::getLine(server, server_response)) {
 					// print response
 					std::cout << rprompt << server_response << stringUtil::lf;
-
-					// exit
-					if (server_response == "Bye.") {
-						break;
-					}
 				}
+			}
+
+			if(!server.rdbuf()->is_open())
+			{
+				break;
 			}
 
 			do {
