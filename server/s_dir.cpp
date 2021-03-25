@@ -17,14 +17,14 @@ namespace operation
 		void Dir::execute(asio::ip::tcp::iostream& stream)
 		{
 			fileSystem::file_system_error error;
-			const int entries_count = server_.countEntries(this->directory_, error);
+			const int entries_count = this->server_.countEntries(this->directory_, error);
 			if (error != fileSystem::file_system_error::none)
 			{
 				stream << fileSystem::ServerFileSystem::errorString(error);
 				return;
 			}
 
-			const fileSystem::directory_iterator entries = server_.iterator(this->directory_, error);
+			const fileSystem::directory_iterator entries = this->server_.iterator(this->directory_, error);
 			if (error != fileSystem::file_system_error::none)
 			{
 				stream << fileSystem::ServerFileSystem::errorString(error);
@@ -32,20 +32,18 @@ namespace operation
 			}
 
 			std::string entries_str_count = std::to_string(entries_count);
-			std::string entries_header = "Entries found: " + entries_str_count;
 			std::string entries_details;
 
 			for (const auto& entry : entries)
 			{
-				fileSystem::FileSystemEntry server_entry = server_.queryEntry(entry.path().string());
+				fileSystem::FileSystemEntry server_entry = this->server_.queryEntry(entry.path().string());
 				std::string details = server_entry.detailedString();
 				stringUtil::addCrlf(details);
 				entries_details.append(details);
 			}
 
 			stringUtil::addCrlf(entries_str_count);
-			stringUtil::addCrlf(entries_header);
 			stringUtil::addCrlf(entries_details);
-			stream << entries_str_count << entries_header << entries_details;
+			stream << entries_str_count << entries_details;
 		}
 } // namespace operation

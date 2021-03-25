@@ -34,6 +34,9 @@
     <Filter Include="Source Files\file">
       <UniqueIdentifier>{b9bb77a7-322e-405e-a213-883d61f9f2d2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\util">
+      <UniqueIdentifier>{4686f213-abcf-41e9-a5be-492a8c8e7989}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -63,8 +66,11 @@
     <ClInclude Include="stream_util.h">
       <Filter>Header Files\util</Filter>
     </ClInclude>
+    <ClInclude Include="base64.h">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
     <ClInclude Include="file_system_entry.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\file</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -77,8 +83,11 @@
     <ClCompile Include="file_system.cpp">
       <Filter>Source Files\file</Filter>
     </ClCompile>
+    <ClCompile Include="base64.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
     <ClCompile Include="file_system_entry.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\file</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

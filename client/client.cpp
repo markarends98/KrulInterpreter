@@ -20,6 +20,8 @@
 #include "c_dir.h"
 #include "c_ren.h"
 #include "c_quit.h"
+#include "c_del.h"
+#include "c_put.h"
 
 int main() {
 	try {
@@ -37,6 +39,8 @@ int main() {
 		operation_factory.registerOperation<operation::DirOperationCreator>();
 		operation_factory.registerOperation<operation::RenOperationCreator>();
 		operation_factory.registerOperation<operation::QuitOperationCreator>();
+		operation_factory.registerOperation<operation::DelOperationCreator>();
+		operation_factory.registerOperation<operation::PutOperationCreator>();
 
 		std::unique_ptr<operation::AbstractOperation> operation;
 		

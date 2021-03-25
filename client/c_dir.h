@@ -8,13 +8,11 @@ namespace operation
 	{
 	private:
 		std::string path_;
-		std::vector<std::string> file_data_;
 	public:
 		void init() override;
 		void readStream(asio::ip::tcp::iostream& stream) override;
 		void execute(asio::ip::tcp::iostream& stream) override;
 		std::string getCommand() override { return std::string("dir"); }
-		_NODISCARD std::vector<std::string> getFileData() const { return file_data_; };
 		void setPath(const std::string& path) { path_ = path; }
 	};
 

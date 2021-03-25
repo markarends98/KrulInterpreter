@@ -23,7 +23,7 @@ namespace fileSystem
 		file_system_error e;
 		return FileSystem::hasPermission(path, permissions, e);
 	}
-	
+
 	// check certain permissions on a directory
 	bool FileSystem::hasPermission(const std::string& path, unsigned long permissions, file_system_error& error)
 	{
@@ -31,22 +31,22 @@ namespace fileSystem
 		const std::wstring converted_path = std::wstring(path.begin(), path.end());
 		DWORD length = 0;
 		if (!::GetFileSecurity(converted_path.c_str(), OWNER_SECURITY_INFORMATION | GROUP_SECURITY_INFORMATION
-		                       | DACL_SECURITY_INFORMATION, nullptr, NULL, &length) &&
+			| DACL_SECURITY_INFORMATION, nullptr, NULL, &length) &&
 			ERROR_INSUFFICIENT_BUFFER == ::GetLastError())
 		{
 			auto* const security = static_cast<PSECURITY_DESCRIPTOR>(::malloc(length));
 			if (security && ::GetFileSecurity(converted_path.c_str(),
-			                                  OWNER_SECURITY_INFORMATION | GROUP_SECURITY_INFORMATION
-			                                  | DACL_SECURITY_INFORMATION, security, length, &length))
+				OWNER_SECURITY_INFORMATION | GROUP_SECURITY_INFORMATION
+				| DACL_SECURITY_INFORMATION, security, length, &length))
 			{
 				HANDLE h_token = nullptr;
 				if (::OpenProcessToken(::GetCurrentProcess(), TOKEN_IMPERSONATE | TOKEN_QUERY |
-				                       TOKEN_DUPLICATE | STANDARD_RIGHTS_READ, &h_token))
+					TOKEN_DUPLICATE | STANDARD_RIGHTS_READ, &h_token))
 				{
 					HANDLE h_impersonated_token = nullptr;
 					if (::DuplicateToken(h_token, SecurityImpersonation, &h_impersonated_token))
 					{
-						PRIVILEGE_SET privileges = {0};
+						PRIVILEGE_SET privileges = { 0 };
 						DWORD granted_access = 0, privileges_length = sizeof(privileges);
 						BOOL result = FALSE;
 
@@ -58,7 +58,7 @@ namespace fileSystem
 
 						::MapGenericMask(&permissions, &mapping);
 						if (::AccessCheck(security, h_impersonated_token, permissions,
-						                  &mapping, &privileges, &privileges_length, &granted_access, &result))
+							&mapping, &privileges, &privileges_length, &granted_access, &result))
 						{
 							b_ret = (result == TRUE);
 						}
@@ -70,7 +70,7 @@ namespace fileSystem
 			}
 		}
 		error = file_system_error::none;
-		if(!b_ret)
+		if (!b_ret)
 		{
 			error = file_system_error::no_permission;
 		}
@@ -200,13 +200,17 @@ namespace fileSystem
 			return false;
 		}
 
-		if(!std::filesystem::create_directory(new_dir))
+		try
+		{
+			std::filesystem::create_directory(new_dir);
+			error = file_system_error::none;
+			return true;
+		}
+		catch (...)
 		{
 			error = file_system_error::could_not_create;
 			return false;
 		}
-		error = file_system_error::none;
-		return true;
 	}
 
 	// create a file
@@ -215,38 +219,39 @@ namespace fileSystem
 		file_system_error e;
 		return this->createFile(filePath, bytes, size(bytes), e);
 	}
-	
+
 	// create a file
 	bool FileSystem::createFile(const std::string& filePath, const std::vector<char>& bytes, const int byteCount) const
 	{
 		file_system_error e;
 		return this->createFile(filePath, bytes, byteCount, e);
 	}
-	
+
 	// create a file
 	bool FileSystem::createFile(const std::string& filePath, const std::vector<char>& bytes, const int byteCount, file_system_error& error) const
 	{
 		std::string path;
 		const std::string full_path = this->fullPath(filePath);
 		stringUtil::findBeforeLast(full_path, '\\', path);
-		if(!this->exists(path, error))
+		if (!this->exists(path, error))
 		{
 			return false;
 		}
-		std::ofstream file_stream(full_path, std::ios::out);
+		std::ofstream file_stream(full_path, std::ios::trunc | std::ios::out | std::ios::binary);
 		bool ret;
-		if(file_stream.good())
+		if (file_stream.good())
 		{
 			file_stream.write(bytes.data(), byteCount);
 			error = file_system_error::none;
 			ret = true;
-		}else
+		}
+		else
 		{
 			error = file_system_error::could_not_create;
 			ret = false;
 		}
-		
-		if(file_stream.is_open())
+
+		if (file_stream.is_open())
 		{
 			file_stream.close();
 		}
@@ -276,13 +281,16 @@ namespace fileSystem
 			return false;
 		}
 
-		if(std::filesystem::remove_all(full_path) == 0)
+		try
 		{
+			std::filesystem::remove_all(full_path);
+			error = file_system_error::none;
+			return true;
+		}
+		catch (...) {
 			error = file_system_error::failed;
 			return false;
 		}
-		error = file_system_error::none;
-		return true;
 	}
 
 	// count the amount of entries in a directory
@@ -291,7 +299,7 @@ namespace fileSystem
 		file_system_error e;
 		return this->countEntries(directory, e);
 	}
-	
+
 	// count the amount of entries in a directory
 	int FileSystem::countEntries(const std::string& directory, file_system_error& error) const
 	{
@@ -299,7 +307,7 @@ namespace fileSystem
 		const directory_iterator it = this->iterator(directory, error);
 		return static_cast<int>(std::distance(it, directory_iterator{}));
 	}
-	
+
 	// get iterator for directory
 	directory_iterator FileSystem::iterator(const std::string& directory) const
 	{
@@ -371,9 +379,9 @@ namespace fileSystem
 		case file_system_error::not_found:
 			return "Error: no such entry.";
 		case file_system_error::no_permission:
-				return "Error: no permission.";
+			return "Error: no permission.";
 		case file_system_error::duplicate:
-				return "Error: duplicate entry.";
+			return "Error: duplicate entry.";
 		case file_system_error::could_not_create:
 			return "Error: could not create entry.";
 		case file_system_error::none:

@@ -15,7 +15,7 @@ namespace operation
 	void Ren::execute(asio::ip::tcp::iostream& stream)
 	{
 		fileSystem::file_system_error error;
-		server_.rename(this->path_, this->new_name_, error);
+		this->server_.rename(this->path_, this->new_name_, error);
 		stream << fileSystem::ServerFileSystem::errorString(error) << stringUtil::crlf;
 	}
 }

@@ -28,10 +28,15 @@ namespace fileSystem {
 		this->size_ = directoryEntry.file_size();
 		this->type_ = directoryEntry.is_directory() ? entry_type::directory : directoryEntry.is_regular_file() ? entry_type::file : entry_type::miscellaneous;
 		
-		std::ifstream file_stream(directoryEntry.path().string(), std::ios::binary);
+		std::ifstream file_stream(directoryEntry.path().string(), std::ios::in | std::ios::binary);
 		if (file_stream.good())
 		{
-			this->bytes_ = std::vector<unsigned char>(std::istreambuf_iterator<char>(file_stream), {});
+			//this->bytes_ = std::vector<char>(std::istreambuf_iterator<char>(file_stream), {});
+
+			while(!file_stream.eof())
+			{
+				this->bytes_.push_back(file_stream.get());
+			}
 		}
 
 		this->date_modified_ = dateUtil::toTimeT(directoryEntry.last_write_time());
@@ -79,7 +84,7 @@ namespace fileSystem {
 		return  this->date_modified_string_;
 	}
 
-	std::vector<unsigned char> FileSystemEntry::bytes() const
+	std::vector<char> FileSystemEntry::bytes() const
 	{
 		return this->bytes_;
 	}

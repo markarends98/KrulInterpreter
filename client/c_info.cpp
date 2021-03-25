@@ -1,6 +1,5 @@
 #include "c_info.h"
 #include "stream_util.h"
-#include "string_util.h"
 
 namespace operation
 {

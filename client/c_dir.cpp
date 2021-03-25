@@ -5,7 +5,7 @@ namespace operation
 {
 	void Dir::init()
 	{
-		streamUtil::cin(this->prompt("Enter path name: "), path_);
+		streamUtil::cin(this->prompt("Enter path name: "), this->path_);
 	}
 	
 	void Dir::readStream(asio::ip::tcp::iostream& stream)
@@ -16,16 +16,13 @@ namespace operation
 		const auto [valid, amount] = stringUtil::extractInteger(response);
 		if (valid)
 		{
-			std::string header;
-			streamUtil::getLine(stream, header);
-			std::cout << header << stringUtil::lf;
+			std::cout << "Entries found: " << amount << stringUtil::lf;
 			
 			for (int i = 0; i < amount; i++)
 			{
 				std::string entry;
 				streamUtil::getLine(stream, entry);
 				std::cout << entry << stringUtil::lf;
-				file_data_.push_back(entry);
 			}
 		}else
 		{
@@ -36,6 +33,6 @@ namespace operation
 	void Dir::execute(asio::ip::tcp::iostream& stream)
 	{
 		// send to server
-		stream << this->getCommand() + stringUtil::crlf + path_ + stringUtil::crlf;
+		stream << this->getCommand() + stringUtil::crlf + this->path_ + stringUtil::crlf;
 	}
 }

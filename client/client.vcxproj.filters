@@ -48,6 +48,12 @@
     <ClCompile Include="c_quit.cpp">
       <Filter>Source Files\operations</Filter>
     </ClCompile>
+    <ClCompile Include="c_del.cpp">
+      <Filter>Source Files\operations</Filter>
+    </ClCompile>
+    <ClCompile Include="c_put.cpp">
+      <Filter>Source Files\operations</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="client_file_system.h">
@@ -66,6 +72,12 @@
       <Filter>Header Files\operations</Filter>
     </ClInclude>
     <ClInclude Include="c_quit.h">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="c_del.h">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="c_put.h">
       <Filter>Header Files\operations</Filter>
     </ClInclude>
   </ItemGroup>

@@ -29,7 +29,7 @@ namespace fileSystem
 		std::string parent_{};
 		time_t date_modified_{};
 		std::string date_modified_string_{};
-		std::vector<unsigned char> bytes_{};
+		std::vector<char> bytes_{};
 		uintmax_t size_{};
 		entry_type type_{};
 	public:
@@ -41,7 +41,7 @@ namespace fileSystem
 		_NODISCARD std::string parent() const;
 		_NODISCARD time_t dateModified() const;
 		_NODISCARD std::string dateModifiedString() const;
-		_NODISCARD std::vector<unsigned char> bytes() const;
+		_NODISCARD std::vector<char> bytes() const;
 		_NODISCARD uintmax_t size() const;
 		_NODISCARD entry_type type() const;
 		_NODISCARD std::string detailedString() const;

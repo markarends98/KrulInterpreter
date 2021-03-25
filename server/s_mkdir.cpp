@@ -18,7 +18,7 @@ namespace operation
 	void MkDir::execute(asio::ip::tcp::iostream& stream)
 	{
 		fileSystem::file_system_error error;
-		server_.createDirectory(this->path_, this->directory_, error);
+		this->server_.createDirectory(this->path_, this->directory_, error);
 		stream << fileSystem::ServerFileSystem::errorString(error) << stringUtil::crlf;;
 	}
 }

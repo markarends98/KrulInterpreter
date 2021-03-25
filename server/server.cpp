@@ -19,6 +19,8 @@
 #include "s_dir.h"
 #include "s_ren.h"
 #include "s_quit.h"
+#include "s_del.h"
+#include "s_put.h"
 
 int main() {
 	try {
@@ -34,6 +36,8 @@ int main() {
 		operation_factory.registerOperation<operation::DirOperationCreator>();
 		operation_factory.registerOperation<operation::RenOperationCreator>();
 		operation_factory.registerOperation<operation::QuitOperationCreator>();
+		operation_factory.registerOperation<operation::DelOperationCreator>();
+		operation_factory.registerOperation<operation::PutOperationCreator>();
 		
 		do {
 			std::cout << "waiting for client to connect" << stringUtil::lf;
