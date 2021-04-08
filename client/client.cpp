@@ -22,13 +22,25 @@
 #include "c_quit.h"
 #include "c_del.h"
 #include "c_put.h"
+#include "c_get.h"
+#include "c_sync.h"
+#include "date_util.h"
+#include <thread>
+#include <iostream>
+#include <chrono>
+void f()
+{
+	std::cout << "Output from thread...";
+	std::this_thread::sleep_for(std::chrono::seconds(5));
+	std::cout << "...thread calls flush()\n";
+	//std::cout.flush();
+}
 
 int main() {
 	try {
 		const char* server_address{ "localhost" };
 		const char* server_port{ "12345" };
 		const char* prompt{ "avansync client> " };
-		const char* rprompt{ "avansync response> " };
 
 		asio::ip::tcp::iostream server{ server_address, server_port };
 		if (!server) throw std::runtime_error("could not connect to server");
@@ -41,23 +53,17 @@ int main() {
 		operation_factory.registerOperation<operation::QuitOperationCreator>();
 		operation_factory.registerOperation<operation::DelOperationCreator>();
 		operation_factory.registerOperation<operation::PutOperationCreator>();
+		operation_factory.registerOperation<operation::GetOperationCreator>();
+		operation_factory.registerOperation<operation::SyncOperationCreator>();
 
 		std::unique_ptr<operation::AbstractOperation> operation;
 		
+		std::string server_response;
+		if (server && streamUtil::getLine(server, server_response)) {
+			std::cout << server_response << stringUtil::lf;
+		}
+		
 		while (server) {
-			if (operation != nullptr)
-			{
-				std::cout << rprompt;
-				operation->readStream(server);
-			}
-			else {
-				std::string server_response;
-				if (streamUtil::getLine(server, server_response)) {
-					// print response
-					std::cout << rprompt << server_response << stringUtil::lf;
-				}
-			}
-
 			if(!server.rdbuf()->is_open())
 			{
 				break;
@@ -75,6 +81,7 @@ int main() {
 				{
 					operation->init();
 					operation->execute(server);
+					operation->readStream(server);
 				}
 			} while (operation == nullptr);
 		}

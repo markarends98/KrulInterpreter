@@ -14,7 +14,7 @@ namespace operation
 		std::string server_response;
 		if (streamUtil::getLine(stream, server_response)) {
 			// print response
-			std::cout << server_response << stringUtil::lf;
+			std::cout << this->response(server_response) << stringUtil::lf;
 		}
 	}
 

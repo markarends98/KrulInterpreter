@@ -63,7 +63,7 @@ namespace stringUtil {
             std::istringstream iss(substr);
             conversionType res;
             try {
-                iss >> res;
+                getline(iss, res);
             }
             catch (...)
             {
@@ -207,17 +207,20 @@ namespace stringUtil {
 
     static inline void eraseEnd(std::string& string, const std::string& remove)
     {
-        if (remove.length() > string.length())
+        const size_t pos = string.find_last_of(remove);
+        if (pos != std::string::npos)
         {
-            return;
+            string.erase(pos, remove.length());
         }
-    	
-        if (!std::equal(remove.rbegin(), remove.rend(), string.rbegin()))
-        {
-            return;
-        }
+    }
 
-        string = string.substr(0, string.length() - remove.length());
+    static inline void eraseBegin(std::string& string, const std::string& remove)
+    {
+	    const size_t pos = string.find(remove);
+        if (pos != std::string::npos)
+        {
+            string.erase(pos, remove.length());
+        }
     }
 
     static inline void eraseCrlf(std::string& string)

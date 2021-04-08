@@ -22,12 +22,13 @@ namespace operation
 			const unsigned char binary = string_data.front();
 			this->data_.push_back(binary);
 		}
+		
 	}
 
 	void Put::execute(asio::ip::tcp::iostream& stream)
 	{
 		fileSystem::file_system_error error;
-		this->server_.createFile(this->target_, this->data_, this->file_size_, error);
+		bool test = this->server_.createFile(this->target_, this->data_, this->file_size_, error);
 		stream << fileSystem::ServerFileSystem::errorString(error) << stringUtil::crlf;
 	}
 }

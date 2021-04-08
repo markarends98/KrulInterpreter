@@ -8,7 +8,7 @@
 
 namespace fileSystem
 {
-	using directory_iterator = std::filesystem::directory_iterator;
+	using directory_iterator = std::vector<FileSystemEntry>;
 	
 	static const char* dirs{ "\\" };
 	
@@ -19,7 +19,8 @@ namespace fileSystem
 		no_permission,
 		duplicate,
 		could_not_create,
-		failed
+		failed,
+		test
 	};
 	
 	CPP_LIBRARY_API class FileSystem

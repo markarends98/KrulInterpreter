@@ -54,6 +54,9 @@
     <ClCompile Include="s_put.cpp">
       <Filter>Source Files\operations</Filter>
     </ClCompile>
+    <ClCompile Include="s_get.cpp">
+      <Filter>Source Files\operations</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="server_file_system.h">
@@ -78,6 +81,9 @@
       <Filter>Header Files\operations</Filter>
     </ClInclude>
     <ClInclude Include="s_put.h">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="s_get.h">
       <Filter>Header Files\operations</Filter>
     </ClInclude>
   </ItemGroup>

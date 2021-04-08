@@ -21,6 +21,7 @@
 #include "s_quit.h"
 #include "s_del.h"
 #include "s_put.h"
+#include "s_get.h"
 
 int main() {
 	try {
@@ -38,6 +39,7 @@ int main() {
 		operation_factory.registerOperation<operation::QuitOperationCreator>();
 		operation_factory.registerOperation<operation::DelOperationCreator>();
 		operation_factory.registerOperation<operation::PutOperationCreator>();
+		operation_factory.registerOperation<operation::GetOperationCreator>();
 		
 		do {
 			std::cout << "waiting for client to connect" << stringUtil::lf;

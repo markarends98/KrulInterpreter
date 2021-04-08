@@ -80,7 +80,7 @@ namespace fileSystem
 	// get the full path of a directory
 	std::string FileSystem::fullPath(const std::string& path) const
 	{
-		if (path == "\\" || path == "//" || path == "/")
+		if (path == "\\" || path == "//" || path == "/" || path.empty())
 		{
 			return this->root_;
 		}
@@ -88,6 +88,12 @@ namespace fileSystem
 		{
 			return path;
 		}
+
+		//std::string new_path = path;
+		//stringUtil::eraseBegin(new_path, "\\");
+		//stringUtil::eraseBegin(new_path, "//");
+		//stringUtil::eraseBegin(new_path, "/");
+		//stringUtil::eraseBegin(new_path, "\\\\");
 		return this->root_ + fileSystem::dirs + path;
 	}
 
@@ -189,8 +195,9 @@ namespace fileSystem
 
 		// check if duplicate
 		const std::string new_dir = full_path + fileSystem::dirs + directoryName;
-		if (this->exists(new_dir, error))
+		if (this->exists(new_dir))
 		{
+			error = file_system_error::duplicate;
 			return false;
 		}
 
@@ -305,7 +312,7 @@ namespace fileSystem
 	{
 		error = file_system_error::none;
 		const directory_iterator it = this->iterator(directory, error);
-		return static_cast<int>(std::distance(it, directory_iterator{}));
+		return it.size();
 	}
 
 	// get iterator for directory
@@ -324,8 +331,14 @@ namespace fileSystem
 			error = file_system_error::not_found;
 			return directory_iterator{};
 		}
+		std::vector<FileSystemEntry> entries;
+		for(auto t : std::filesystem::directory_iterator(full_path))
+		{
+			entries.push_back(this->queryEntry(t.path().string()));
+		}
+
 		error = file_system_error::none;
-		return directory_iterator(full_path);
+		return entries;
 	}
 
 	// query details of an entry

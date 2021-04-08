@@ -54,6 +54,12 @@
     <ClCompile Include="c_put.cpp">
       <Filter>Source Files\operations</Filter>
     </ClCompile>
+    <ClCompile Include="c_get.cpp">
+      <Filter>Source Files\operations</Filter>
+    </ClCompile>
+    <ClCompile Include="c_sync.cpp">
+      <Filter>Source Files\operations</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="client_file_system.h">
@@ -78,6 +84,12 @@
       <Filter>Header Files\operations</Filter>
     </ClInclude>
     <ClInclude Include="c_put.h">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="c_get.h">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="c_sync.h">
       <Filter>Header Files\operations</Filter>
     </ClInclude>
   </ItemGroup>

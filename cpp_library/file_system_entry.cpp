@@ -31,16 +31,15 @@ namespace fileSystem {
 		std::ifstream file_stream(directoryEntry.path().string(), std::ios::in | std::ios::binary);
 		if (file_stream.good())
 		{
-			//this->bytes_ = std::vector<char>(std::istreambuf_iterator<char>(file_stream), {});
-
 			while(!file_stream.eof())
 			{
 				this->bytes_.push_back(file_stream.get());
 			}
 		}
 
-		this->date_modified_ = dateUtil::toTimeT(directoryEntry.last_write_time());
-		this->date_modified_string_ = dateUtil::format(directoryEntry.last_write_time(), "%F %X");
+		auto time = directoryEntry.last_write_time();
+		this->date_modified_ = dateUtil::toTimeT(time);
+		this->date_modified_string_ = dateUtil::format(time, "%Y-%m-%d %H:%M:%S");
 	}
 
 	FileSystemEntry FileSystemEntry::findEntry(const std::string& path)

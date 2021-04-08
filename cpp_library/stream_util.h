@@ -23,7 +23,7 @@ namespace streamUtil
 	template<typename elem,typename traits>
 	static inline bool getLine(std::basic_istream<elem, traits>& stream, std::string& output)
 	{
-		if(std::getline(stream, output))
+		if (std::getline(stream, output))
 		{
 			stringUtil::eraseCr(output);
 			stringUtil::trim(output);

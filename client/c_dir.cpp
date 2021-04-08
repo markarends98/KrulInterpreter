@@ -26,7 +26,7 @@ namespace operation
 			}
 		}else
 		{
-			std::cout << response << stringUtil::lf;
+			std::cout << this->response(response) << stringUtil::lf;
 		}
 	}
 	

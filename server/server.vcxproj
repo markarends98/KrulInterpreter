@@ -159,6 +159,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="s_get.cpp" />
     <ClCompile Include="s_put.cpp" />
     <ClCompile Include="server.cpp" />
     <ClCompile Include="server_file_system.cpp" />
@@ -178,6 +179,7 @@
     <ClInclude Include="server_file_system.h" />
     <ClInclude Include="s_del.h" />
     <ClInclude Include="s_dir.h" />
+    <ClInclude Include="s_get.h" />
     <ClInclude Include="s_info.h" />
     <ClInclude Include="s_mkdir.h" />
     <ClInclude Include="s_put.h" />

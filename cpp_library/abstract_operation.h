@@ -23,6 +23,7 @@ namespace operation
         virtual std::string getCommand() = 0;
         virtual void init() {}
     protected:
+        std::string response(const std::string& message = "") { return this->getCommand() + " response> " + message; }
         std::string prompt(const std::string& message = "") { return this->getCommand() + "> " + message; }
         std::string error(const std::string& error = "") { return this->getCommand() + " error> " + error; }
     };
