@@ -83,20 +83,20 @@ namespace operation
 			cmd_mkdir.readStream(stream);
 		}
 		
-		//Delete files that don't exist on client side
-		//for (const SyncFile& sync_file : server_files)
-		//{
-		//	fileSystem::FileSystemEntry c_entry = this->client_.queryEntry(sync_file.path);
+		// Delete files that don't exist on client side
+		for (const SyncFile& sync_file : server_files)
+		{
+			fileSystem::FileSystemEntry c_entry = this->client_.queryEntry(sync_file.path);
 
-		//	if (!c_entry.exists())
-		//	{
-		//		std::cout << this->prompt("Deleting") << stringUtil::wspc << sync_file.path << stringUtil::wspc << "from server" << stringUtil::lf;
-		//		Del cmd_del;
-		//		cmd_del.setTarget(sync_file.path);
-		//		cmd_del.execute(stream);
-		//		cmd_del.readStream(stream);
-		//	}
-		//}
+			if (!c_entry.exists())
+			{
+				std::cout << this->prompt("Deleting") << stringUtil::wspc << sync_file.path << stringUtil::wspc << "from server" << stringUtil::lf;
+				Del cmd_del;
+				cmd_del.setTarget(sync_file.path);
+				cmd_del.execute(stream);
+				cmd_del.readStream(stream);
+			}
+		}
 
 		// Client files from current dir
 		const fileSystem::directory_iterator entries = this->client_.iterator(full_dir);
